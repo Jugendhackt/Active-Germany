@@ -1,0 +1,144 @@
+{
+  "activities": {
+    "activity_id0": [
+      {
+        "titel": "kochen"
+      },
+      {
+        "beschreibung": "Ich bin eine tolle Beschreibung"
+      },
+      {
+        "bild": "www.bilder.com/bild.jpg"
+      },
+      {
+        "ort": "adresse"
+      }
+    ],
+    "activity_id1": [
+      {
+        "titel": "joggen"
+      },
+      {
+        "beschreibung": "Ich bin eine tolle Beschreibung"
+      },
+      {
+        "bild": "www.bilder.com/bild.jpg"
+      },
+      {
+        "ort": "adresse"
+      }
+    ],
+    "activity_id2": [
+      {
+        "titel": "lernen"
+      },
+      {
+        "beschreibung": "Ich bin eine tolle Beschreibung"
+      },
+      {
+        "bild": "www.bilder.com/bild.jpg"
+      },
+      {
+        "ort": "adresse"
+      }
+    ],
+    "activity_id3": [
+      {
+        "titel": "lasertag"
+      },
+      {
+        "beschreibung": "Ich bin eine tolle Beschreibung"
+      },
+      {
+        "bild": "www.bilder.com/bild.jpg"
+      },
+      {
+        "ort": "adresse"
+      }
+    ],
+    "activity_id4": [
+      {
+        "titel": "Wandern"
+      },
+      {
+        "beschreibung": "Ich bin eine tolle Beschreibung"
+      },
+      {
+        "bild": "www.bilder.com/bild.jpg"
+      },
+      {
+        "ort": "adresse"
+      }
+    ],
+    "activity_id5": [
+      {
+        "titel": "Joggen"
+      },
+      {
+        "beschreibung": "Ich bin eine tolle Beschreibung"
+      },
+      {
+        "bild": "www.bilder.com/bild.jpg"
+      },
+      {
+        "ort": "adresse"
+      }
+    ],
+    "activity_id6": [
+      {
+        "titel": "Film Abend"
+      },
+      {
+        "beschreibung": "Ich bin eine tolle Beschreibung"
+      },
+      {
+        "bild": "www.bilder.com/bild.jpg"
+      },
+      {
+        "ort": "adresse"
+      }
+    ],
+    "activity_id7": [
+      {
+        "titel": "Fahrrad Tour"
+      },
+      {
+        "beschreibung": "Ich bin eine tolle Beschreibung"
+      },
+      {
+        "bild": "www.bilder.com/bild.jpg"
+      },
+      {
+        "ort": "adresse"
+      }
+    ],
+    "activity_id8": [
+      {
+        "titel": "kochen"
+      },
+      {
+        "beschreibung": "Ich bin eine tolle Beschreibung"
+      },
+      {
+        "bild": "www.bilder.com/bild.jpg"
+      },
+      {
+        "ort": "adresse"
+      }
+    ],
+    "activity_id9": [
+      {
+        "titel": "JugendHackt Abschluss präsentation"
+      },
+      {
+        "beschreibung": "Ich bin eine tolle Beschreibung"
+      },
+      {
+        "bild": "www.bilder.com/bild.jpg"
+      },
+      {
+        "ort": "adresse"
+      }
+    ]
+  }
+}
