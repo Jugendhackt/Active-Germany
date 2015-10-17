@@ -1,5 +1,6 @@
 package com.tomaskostadinov.activegermany;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -33,14 +34,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent addIntent = new Intent(MainActivity.this, AddActivity.class);
+                //myIntent.putExtra("id", id); //Optional parameters
+                MainActivity.this.startActivity(addIntent);
             }
         });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -48,20 +49,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         items = new ArrayList<>();
 
-            RecyclerView rvUsers = (RecyclerView) findViewById(R.id.rvActivities);
-            adapter = new OverviewAdapter(this, getActivities());
-            rvUsers.setAdapter(adapter);
-            rvUsers.setLayoutManager(new LinearLayoutManager(this));
-        }
+        RecyclerView rvUsers = (RecyclerView) findViewById(R.id.rvActivities);
+        adapter = new OverviewAdapter(this, getActivities());
+        rvUsers.setAdapter(adapter);
+        rvUsers.setLayoutManager(new LinearLayoutManager(this));
+        AddData("https://images.unsplash.com/photo-1431578409060-9aad91ba5f79?q=80&fm=jpg&w=1080&fit=max&s=e69a9b48f4cfb0e1c4dcfe7ef900716b", "Sport machen", "Wir gehen zusammen einen Marathon laufen");
+        AddData("https://images.unsplash.com/reserve/tHTHup3YTN6XsLwf43vY_IMG_8003.jpg?q=80&fm=jpg&w=1080&fit=max&s=2757eb58e2526b419d012a978055670c", "Kochen", "Ich biete einen Kochkurs für bis zu 10 Personen an. Wir werden ");
+        AddData("https://images.unsplash.com/photo-1431578409060-9aad91ba5f79?q=80&fm=jpg&w=1080&fit=max&s=e69a9b48f4cfb0e1c4dcfe7ef900716b", "Sport machen", "Wir gehen zusammen laufen");
+        AddData("https://images.unsplash.com/photo-1431578409060-9aad91ba5f79?q=80&fm=jpg&w=1080&fit=max&s=e69a9b48f4cfb0e1c4dcfe7ef900716b", "Sport machen", "Wir gehen zusammen laufen");
+    }
 
-        private ArrayList<Activity> getActivities() {
-            return items;
-        }
+    private ArrayList<Activity> getActivities() {
+        return items;
+    }
 
-        public void AddData(String img_url, String desc, String title) {
-                    items.add(new Activity(img_url, desc, title));
-                    adapter.notifyItemInserted(0);
-        }
+    public void AddData(String img_url, String desc, String title) {
+        items.add(new Activity(img_url, desc, title, "10"));
+        adapter.notifyItemInserted(0);
+    }
 
     @Override
     public void onBackPressed() {

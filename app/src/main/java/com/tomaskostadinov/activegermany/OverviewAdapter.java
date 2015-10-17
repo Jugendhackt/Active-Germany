@@ -1,6 +1,7 @@
 package com.tomaskostadinov.activegermany;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -49,7 +52,7 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
     @Override
     public OverviewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // Inflate the custom layout
-        final View itemView = LayoutInflater.from(context).inflate(R.layout.activity_card, parent, false);
+        final View itemView = LayoutInflater.from(context).inflate(R.layout.card_activity, parent, false);
         //itemView.setOnClickListener(mCLick());
         // Return a new holder instance
         return new OverviewAdapter.ViewHolder(itemView);
@@ -64,7 +67,9 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
         // Set item views based on the data model
         holder.tvDescription.setText(activities.description);
         holder.tvTitle.setText(activities.title);
-        //holder.ivWeatheric.setImageResource(weatherHelper.convertWeather(songs.weatherid));
+        Glide.with(holder.ivPhoto.getContext()).load(activities.url)
+                .fitCenter()
+                .into(holder.ivPhoto);
     }
 
     // Return the total count of items
@@ -76,6 +81,9 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
     @Override
     public void onClick(View v){
         Log.i("onClick", "on View: " + v.toString());
+        Intent detail = new Intent(context, AddActivity.class);
+        detail.putExtra("id", id); //Optional parameters
+        context.startActivity(detail);
     }
 }
 

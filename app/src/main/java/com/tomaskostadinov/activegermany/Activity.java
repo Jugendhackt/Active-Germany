@@ -4,9 +4,10 @@ package com.tomaskostadinov.activegermany;
  * Created by Tomas on 03.08.2015
  */
 public class Activity {
-    public Activity(String title, String description, String max_persons) {
+    public Activity(String url, String title, String description, String max_persons) {
         this.title = title;
         this.description = description;
+        this.url = url;
         this.max_persons = max_persons;
     }
 
@@ -38,6 +39,7 @@ public class Activity {
     public String title;
     public String description;
     public String max_persons;
+    public String url;
 }
 
 
