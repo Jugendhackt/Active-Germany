@@ -1,35 +1,43 @@
 package com.tomaskostadinov.activegermany;
 
 /**
- * Created by Tomas on 03.08.2015.
+ * Created by Tomas on 03.08.2015
  */
 public class Activity {
-    public Integer time;
-    public Double max_temp;
-    public Double min_temp;
-    public Double pressoure;
-    public Integer humidity;
-    public Integer weatherid;
-    public String description;
-    public Double windspeed;
-    public Activity(
-            Integer time,
-            Double max_temp,
-            Double min_temp,
-            Double pressoure,
-            Integer humidity,
-            Integer weatherid,
-            String description,
-            Double windspeed) {
-        this.time = time;
-        this.max_temp = max_temp;
-        this.min_temp = min_temp;
-        this.pressoure = pressoure;
-        this.humidity = humidity;
-        this.weatherid = weatherid;
+    public Activity(String title, String description, String max_persons) {
+        this.title = title;
         this.description = description;
-        this.windspeed = windspeed;
+        this.max_persons = max_persons;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTitle() {
+
+        return title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setMax_persons(String max_persons) {
+        this.max_persons = max_persons;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getMax_persons() {
+        return max_persons;
+    }
+
+    public String title;
+    public String description;
+    public String max_persons;
 }
 
 

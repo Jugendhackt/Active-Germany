@@ -9,15 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.tomaskostadinov.weatherapp.helper.WeatherHelper;
-import com.tomaskostadinov.weatherapp.model.Day;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
- * Created by Tomas on 02.08.2015.
+ * Created by Tomas on 02.08.2015
  */
 // Create the basic adapter extending from RecyclerView.Adapter
 // Note that we specify the custom ViewHolder which gives us access to our views
@@ -28,64 +23,54 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
-        public TextView tvDayName;
+        public TextView tvTitle;
         public TextView tvDescription;
-        public TextView tvTemperature;
-        public TextView tvMaxTemp, tvMinTemp;
-        public ImageView ivWeatheric;
+        public ImageView ivPhoto;
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
         public ViewHolder(View itemView) {
             super(itemView);
-            this.tvDayName = (TextView) itemView.findViewById(R.id.tvName);
-            this.tvDescription = (TextView) itemView.findViewById(R.id.tvHome);
-            this.tvTemperature = (TextView) itemView.findViewById(R.id.genre);
-            this.ivWeatheric = (ImageView) itemView.findViewById(R.id.Stat);
+            this.tvTitle = (TextView) itemView.findViewById(R.id.title);
+            this.tvDescription = (TextView) itemView.findViewById(R.id.descripton);
+            this.ivPhoto = (ImageView) itemView.findViewById(R.id.activity_photo);
         }
     }
 
-    private ArrayList<Day> users;
+    private ArrayList<Activity> array_activities;
     // Store the context for later use
     private Context context;
 
     // Pass in the context and users array into the constructor
-    public OverviewAdapter(Context context, ArrayList<Day> users) {
-        this.users = users;
+    public OverviewAdapter(Context context, ArrayList<Activity> array_activities) {
+        this.array_activities = array_activities;
         this.context = context;
     }
 
     @Override
-    public ForecastOverviewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public OverviewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // Inflate the custom layout
-        final View itemView = LayoutInflater.from(context).inflate(R.layout.daycard, parent, false);
+        final View itemView = LayoutInflater.from(context).inflate(R.layout.activity_card, parent, false);
         //itemView.setOnClickListener(mCLick());
         // Return a new holder instance
-        return new ForecastOverviewAdapter.ViewHolder(itemView);
+        return new OverviewAdapter.ViewHolder(itemView);
     }
 
     // Involves populating data into the item through holder
 
-    public WeatherHelper weatherHelper;
     @Override
-    public void onBindViewHolder(ForecastOverviewAdapter.ViewHolder holder, int position) {
-        weatherHelper = new WeatherHelper();
+    public void onBindViewHolder(OverviewAdapter.ViewHolder holder, int position) {
         // Get the data model based on position
-        Day songs = users.get(position);
+        Activity activities = array_activities.get(position);
         // Set item views based on the data model
-        Integer timestamp = songs.time;
-        Date time = new Date((long)timestamp*1000);
-        SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd.");
-        holder.tvDayName.setText(sdf.format(time));
-        holder.tvDescription.setText(songs.description);
-        String temp =  String.format("%.1f", songs.max_temp);
-        holder.tvTemperature.setText( temp + "°");
-        holder.ivWeatheric.setImageResource(weatherHelper.convertWeather(songs.weatherid));
+        holder.tvDescription.setText(activities.description);
+        holder.tvTitle.setText(activities.title);
+        //holder.ivWeatheric.setImageResource(weatherHelper.convertWeather(songs.weatherid));
     }
 
     // Return the total count of items
     @Override
     public int getItemCount() {
-        return users.size();
+        return array_activities.size();
     }
 
     @Override
