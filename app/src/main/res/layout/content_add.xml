@@ -5,9 +5,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:layout_behavior="@string/appbar_scrolling_view_behavior" tools:showIn="@layout/activity_add"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    tools:context="com.tomaskostadinov.activegermany.AddActivity">
+    tools:context="com.tomaskostadinov.activegermany.AddActivity"
+    android:layout_margin="20dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_name_l"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin" android:text="@string/large_text" />
+            <EditText
+                android:id="@+id/input_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Aktivität" />
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_desc_l"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Beschreibung" />
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_ort_l"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_ort"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ort" />
+
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

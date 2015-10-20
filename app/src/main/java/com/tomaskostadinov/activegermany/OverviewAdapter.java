@@ -53,7 +53,7 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
     public OverviewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // Inflate the custom layout
         final View itemView = LayoutInflater.from(context).inflate(R.layout.card_activity, parent, false);
-        //itemView.setOnClickListener(mCLick());
+        itemView.setOnClickListener(this);
         // Return a new holder instance
         return new OverviewAdapter.ViewHolder(itemView);
     }
@@ -81,8 +81,8 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
     @Override
     public void onClick(View v){
         Log.i("onClick", "on View: " + v.toString());
-        Intent detail = new Intent(context, AddActivity.class);
-        detail.putExtra("id", id); //Optional parameters
+        Intent detail = new Intent(context, DetailActivity.class);
+        detail.putExtra("id", "1"); //Optional parameters
         context.startActivity(detail);
     }
 }

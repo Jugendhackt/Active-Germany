@@ -3,9 +3,9 @@ package com.tomaskostadinov.activegermany;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,13 +15,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Objects;
+import java.util.logging.Handler;
+
+import cz.msebera.android.httpclient.Header;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public ArrayList<Activity> items;
     OverviewAdapter adapter;
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -53,10 +68,62 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         adapter = new OverviewAdapter(this, getActivities());
         rvUsers.setAdapter(adapter);
         rvUsers.setLayoutManager(new LinearLayoutManager(this));
-        AddData("https://images.unsplash.com/photo-1431578409060-9aad91ba5f79?q=80&fm=jpg&w=1080&fit=max&s=e69a9b48f4cfb0e1c4dcfe7ef900716b", "Sport machen", "Wir gehen zusammen einen Marathon laufen");
-        AddData("https://images.unsplash.com/reserve/tHTHup3YTN6XsLwf43vY_IMG_8003.jpg?q=80&fm=jpg&w=1080&fit=max&s=2757eb58e2526b419d012a978055670c", "Kochen", "Ich biete einen Kochkurs für bis zu 10 Personen an. Wir werden ");
-        AddData("https://images.unsplash.com/photo-1431578409060-9aad91ba5f79?q=80&fm=jpg&w=1080&fit=max&s=e69a9b48f4cfb0e1c4dcfe7ef900716b", "Sport machen", "Wir gehen zusammen laufen");
-        AddData("https://images.unsplash.com/photo-1431578409060-9aad91ba5f79?q=80&fm=jpg&w=1080&fit=max&s=e69a9b48f4cfb0e1c4dcfe7ef900716b", "Sport machen", "Wir gehen zusammen laufen");
+        downloadData();
+    }
+
+    public void downloadData(){
+
+        /**
+         * Start JSON data download
+         */
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get("https://raw.githubusercontent.com/MaschiniDev/Active-Germany/master/data/activities.json",
+                new AsyncHttpResponseHandler() {
+
+            @Override
+            public void onStart() {
+                // called before request is started
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                // called when response HTTP status is "200 OK"
+                String in = new String(response);
+                ParseData(in);
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+            }
+
+            @Override
+            public void onRetry(int retryNo) {
+                // called when request is retried
+            }
+        });
+    }
+
+    public void ParseData(String in) {
+        try {
+            JSONObject object = new JSONObject(in);
+            JSONArray activities = object.getJSONArray("activities");
+
+            for (int i = 0; i < activities.length(); i++) {
+
+                JSONObject j = (JSONObject) activities.get(i);
+                String tit = j.getString("titel");
+                String besch =j.getString("beschreibung");
+                String bild = j.getString("bild");
+
+                AddData(bild, besch, tit);
+                adapter.notifyItemInserted(0);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("JSON Parsing", e.toString());
+        }
     }
 
     private ArrayList<Activity> getActivities() {
@@ -66,16 +133,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void AddData(String img_url, String desc, String title) {
         items.add(new Activity(img_url, desc, title, "10"));
         adapter.notifyItemInserted(0);
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
     }
 
     @Override
@@ -99,6 +156,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         return super.onOptionsItemSelected(item);
     }
+    Integer b = 0;
+    private android.os.Handler mHandler = new android.os.Handler();
+
+    @Override
+    public void onBackPressed(){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+            b = 0;
+        } else {
+            b = b + 1;
+            if(b == 2){
+                finish();
+            }   else if(b == 1){
+                Toast.makeText(getBaseContext(), "Zum Beenden erneut drücken", Toast.LENGTH_LONG).show();
+            }
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    b = 0;
+                }
+            }, 2000);
+            finish();
+        }
+    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -106,18 +187,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camara) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.feed) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.map) {
+            Intent addIntent = new Intent(MainActivity.this, MapsActivity.class);
+            //myIntent.putExtra("id", id); //Optional parameters
+            MainActivity.this.startActivity(addIntent);
+        } else if (id == R.id.category) {
+            Intent addIntent = new Intent(MainActivity.this, CategoryActivity.class);
+            //myIntent.putExtra("id", id); //Optional parameters
+            MainActivity.this.startActivity(addIntent);
+        } else if (id == R.id.filter) {
+            Intent addIntent = new Intent(MainActivity.this, AddActivity.class);
+            //myIntent.putExtra("id", id); //Optional parameters
+            MainActivity.this.startActivity(addIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
