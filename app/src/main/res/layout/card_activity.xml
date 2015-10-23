@@ -4,7 +4,8 @@
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:elevation="2dp">
     <LinearLayout
         android:padding="0dp"
         android:layout_width="match_parent"
@@ -25,8 +26,8 @@
             android:textStyle="bold"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:paddingTop="4dp"
-            android:layout_marginTop="8dp"
+            android:paddingTop="0dp"
+            android:layout_marginTop="2dp"
             android:textSize="@dimen/text_size_large"
             />
         <TextView
@@ -35,8 +36,24 @@
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:paddingBottom="4dp"
             android:textColor="@color/primaryText"
             android:textSize="@dimen/text_size_large" />
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <Button
+                android:id="@+id/button1"
+                android:textColor="@color/colorPrimaryDark"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:text="Ansehen" />
+
+        </RelativeLayout>
+
     </LinearLayout>
 </android.support.v7.widget.CardView>

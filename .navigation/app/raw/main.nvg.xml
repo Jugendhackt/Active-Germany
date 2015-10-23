@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navigationModel
+  ns = "http://schemas.android.com?import=com.android.tools.idea.editors.navigation.model.*">
+  <locations  
+    class = "java.util.ArrayList">
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "com.tomaskostadinov.activegermany.AddActivity"/>
+      <point      
+        x = "6203"      
+        y = "148"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "com.tomaskostadinov.activegermany.MapsActivity"/>
+      <point      
+        x = "4857"      
+        y = "154"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "com.tomaskostadinov.activegermany.CategoryActivity"/>
+      <point      
+        x = "3543"      
+        y = "141"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "com.tomaskostadinov.activegermany.MainActivity"/>
+      <point      
+        x = "837"      
+        y = "173"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "com.tomaskostadinov.activegermany.DetailActivity"/>
+      <point      
+        x = "2241"      
+        y = "173"/>
+    </statePointEntry>
+  </locations>
+</navigationModel>
