@@ -1,5 +1,7 @@
 # Active Germany - "Auf eine gemeinsame Zukunft"
-##### Ein Jugend Hackt 2015 Projekt  
+
+![](https://jhbadge.com/?evt=ber&year=2015) 
+
 Die perfekte App um Flüchtlingen die Integration zu erleichtern, 
 aber auch um die Sitten und Sprachen anderer Kulturen in deiner Freizeit kennenzulernen!<br>
 Wenn du "Active Germany" benutzt, siehst Du direkt die nächsten Aktivitäten in deiner Nähe!
