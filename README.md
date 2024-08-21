@@ -14,7 +14,7 @@ Wenn du "Active Germany" benutzt, siehst Du direkt die nächsten Aktivitäten in
 * Nina Ihde
 * Tomas Kostadinov
 * Nele Meier
-* Malte Schink
+* M Schink
 * Noah Diemel
 * Johanna
 * Jonas Wagner
